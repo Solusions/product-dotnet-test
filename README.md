@@ -30,3 +30,7 @@ You will be judged based on the following:
 - Fork this repository
 - Code your solution in your fork
 - When you are done, please email me the link to your fork.
+
+### Tips
+- Make sure to run Update-Database to get the seed data
+
