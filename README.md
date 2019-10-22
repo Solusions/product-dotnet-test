@@ -33,4 +33,4 @@ You will be judged based on the following:
 
 ### Tips
 - Make sure to run Update-Database to get the seed data
-
+- The .Data project contains the DB context, you you will need to use it was the project from the Package Manager console. 
