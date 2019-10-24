@@ -1,0 +1,74 @@
+﻿@model Product.Data.Entities.Material
+
+@{
+    ViewBag.Title = "Merge Material ";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Material</h4>
+    <hr />
+    <div class="form-group">
+        @Html.Label("Material Id", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MaterialId, new { htmlAttributes = new { @id = "mId", @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            <input type="hidden" id="hidden2" name="hidden2" value="" />
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Merge With", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownList("txtMerge", new SelectList(Model.ExecutivesList, "MaterialId", "Name"), "-----Select Merge Id--", new { htmlAttributes = new { @id = "txtMerge", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaterialId, "", new { @class = "text-danger" })
+                <input type="hidden" id="hidden1" name="hidden1" value="" />
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Merge" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtMerge").change(function () {
+                var mergeIdM = $(this).val();
+                var keepId = $("#mId").val();
+                $("#hidden1").val(mergeIdM);
+                $("#hidden2").val(keepId);
+         
+            });
+        });
+ </script>
